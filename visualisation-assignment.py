@@ -81,7 +81,7 @@ def PlotPieGraph(x, y, title=""):
 # get crypto data for CEX Exchange and store in Dataframe
 # skip first 1 rows as those contain data references and information
 # cryptoData = GetDataFromPath('https://www.cryptodatadownload.com/cdd/CEX_AAVEUSD_d.csv', 1)
-cryptoData = GetDataFromPath('../Data/CEX_AAVEUSD_d.csv', 1)
+cryptoData = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/CEX_AAVEUSD_d.csv', 1)
 
 # get first few records for better visualisation
 # if you want to see all date comment this line
@@ -121,8 +121,8 @@ plt.show()
 
 # data source -> https://www.data.gov.uk/dataset/44864962-e4ad-46e6-8f10-71b40126cefb/higher-education-student-data
 # get student records of enrollment for year 2014/15 and skip description rows 14
-std_records_2014 = GetDataFromPath('../Data/table 11-(2014-15).csv', 14)
-std_records_2021 = GetDataFromPath('../Data/table 11-(2021-22).csv', 14)
+std_records_2014 = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/table%2011-(2014-15).csv', 14)
+std_records_2021 = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/table%2011-(2021-22).csv', 14)
 
 # slice data for better visualisation and avoiding memory error bcz data is big
 std_records_2014 = std_records_2014.iloc[0:500]
@@ -141,7 +141,7 @@ PlotBarGraph(std_records_2021['Mode of study'], std_records_2021['Number'],
 # third graph pie
 # data source -> https://data.worldbank.org/indicator/IT.CEL.SETS.P2?locations=XO-XM-XJ&name_desc=false
 # cellular subscription data according to region for years
-cellular_subs_data = GetDataFromPath('../Data/API_IT.CEL.SETS.P2_DS2_en_csv_v2_4903391.csv', 4)
+cellular_subs_data = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/API_IT.CEL.SETS.P2_DS2_en_csv_v2_4903391.csv', 4)
 
 # get first 10 countries data
 cellular_subs_data = cellular_subs_data.iloc[0:10]
