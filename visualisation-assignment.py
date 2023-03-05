@@ -7,6 +7,7 @@ Created on Sat Mar  1 00:30:15 2023
 import matplotlib.pyplot as plt
 import pandas as pd
 
+
 def GetDataFromPath(filePath, sRows=0):
     """
     this method takes the csv file url and return as
@@ -69,7 +70,7 @@ def PlotPieGraph(x, y, title=""):
     plt.figure(figsize=(20, 20), dpi=200)
     # plot the pie graph with lengends
     plt.pie(y, labels=x)
-    
+
     # set legend and location of legend to separate from pie chart
     plt.legend(loc='upper left')
     plt.title(title, size=18)
@@ -80,8 +81,8 @@ def PlotPieGraph(x, y, title=""):
 # data source -> https://www.cryptodatadownload.com/data/cexio/
 # get crypto data for CEX Exchange and store in Dataframe
 # skip first 1 rows as those contain data references and information
-# cryptoData = GetDataFromPath('https://www.cryptodatadownload.com/cdd/CEX_AAVEUSD_d.csv', 1)
-cryptoData = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/CEX_AAVEUSD_d.csv', 1)
+cryptoData = GetDataFromPath(
+    'https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/CEX_AAVEUSD_d.csv', 1)
 
 # get first few records for better visualisation
 # if you want to see all date comment this line
@@ -121,8 +122,10 @@ plt.show()
 
 # data source -> https://www.data.gov.uk/dataset/44864962-e4ad-46e6-8f10-71b40126cefb/higher-education-student-data
 # get student records of enrollment for year 2014/15 and skip description rows 14
-std_records_2014 = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/table%2011-(2014-15).csv', 14)
-std_records_2021 = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/table%2011-(2021-22).csv', 14)
+std_records_2014 = GetDataFromPath(
+    'https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/table%2011-(2014-15).csv', 14)
+std_records_2021 = GetDataFromPath(
+    'https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/table%2011-(2021-22).csv', 14)
 
 # slice data for better visualisation and avoiding memory error bcz data is big
 std_records_2014 = std_records_2014.iloc[0:500]
@@ -130,18 +133,19 @@ std_records_2021 = std_records_2021.iloc[0:500]
 
 # plot the graph by method for student enrolled by region for year 2014-15
 PlotBarGraph(std_records_2014['Region of HE provider'], std_records_2014['Number'],
-             'Number of Students Enrolled By Region in Academic Year 2014-15', 
+             'Number of Students Enrolled By Region in Academic Year 2014-15',
              "Student Enrollment Record 2014-15", 'Region', 'Number of Students')
 
 # plot the graph by method for student enrolled by Mode of study for year 2021-22
 PlotBarGraph(std_records_2021['Mode of study'], std_records_2021['Number'],
-             'Number of Students Enrolled By Study Mode in Academic Year 2021-22', 
+             'Number of Students Enrolled By Study Mode in Academic Year 2021-22',
              "Student Enrollment Record 2021-22", 'Study Mode', 'Number of Students')
 
 # third graph pie
 # data source -> https://data.worldbank.org/indicator/IT.CEL.SETS.P2?locations=XO-XM-XJ&name_desc=false
 # cellular subscription data according to region for years
-cellular_subs_data = GetDataFromPath('https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/API_IT.CEL.SETS.P2_DS2_en_csv_v2_4903391.csv', 4)
+cellular_subs_data = GetDataFromPath(
+    'https://raw.githubusercontent.com/adeelriasat/data-ads-1/main/API_IT.CEL.SETS.P2_DS2_en_csv_v2_4903391.csv', 4)
 
 # get first 10 countries data
 cellular_subs_data = cellular_subs_data.iloc[0:10]
