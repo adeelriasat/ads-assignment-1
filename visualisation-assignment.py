@@ -6,8 +6,6 @@ Created on Sat Mar  1 00:30:15 2023
 """
 import matplotlib.pyplot as plt
 import pandas as pd
-import sys
-
 
 def GetDataFromPath(filePath, sRows=0):
     """
@@ -37,9 +35,9 @@ def GetCryptoPrices(cryptoDataFrame):
 
 def PlotBarGraph(x, y, legend="", title="", xlabel="", ylabel=""):
     """
-    this method takes plot bar graph for given data
+    this method plot bar graph
     it takes graph data in params and plot the bar graph
-    if the three params legend, xlabel and ylabel not given default will be empty
+    if the four params legend, title, xlabel and ylabel not given default will be empty
     x and y are required
     """
     # set the fig size and resolution
@@ -52,7 +50,7 @@ def PlotBarGraph(x, y, legend="", title="", xlabel="", ylabel=""):
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.xticks(rotation=45)
-    
+
     # show graph title with size of title
     plt.title(title, size=18)
     plt.show()
@@ -60,21 +58,26 @@ def PlotBarGraph(x, y, legend="", title="", xlabel="", ylabel=""):
 
 def PlotPieGraph(x, y, title=""):
     """
-    this method takes plot bar graph for given data
-    it takes graph data in params and plot the bar graph
-    if the three params legend, xlabel and ylabel not given default will be empty
+    this method plot pie graph
+    it takes graph data in params and plot the pie graph
+    if the title param is not given default will be empty
     x and y are required
+    x is labels data 
+    y is specific year data
     """
     # set the fig size and resolution
     plt.figure(figsize=(20, 20), dpi=200)
     # plot the pie graph with lengends
     plt.pie(y, labels=x)
+    
+    # set legend and location of legend to separate from pie chart
     plt.legend(loc='upper left')
     plt.title(title, size=18)
     plt.show()
 
 
 # first graph line
+# data source -> https://www.cryptodatadownload.com/data/cexio/
 # get crypto data for CEX Exchange and store in Dataframe
 # skip first 1 rows as those contain data references and information
 # cryptoData = GetDataFromPath('https://www.cryptodatadownload.com/cdd/CEX_AAVEUSD_d.csv', 1)
@@ -116,27 +119,29 @@ plt.show()
 
 # second graph bar
 
+# data source -> https://www.data.gov.uk/dataset/44864962-e4ad-46e6-8f10-71b40126cefb/higher-education-student-data
 # get student records of enrollment for year 2014/15 and skip description rows 14
 std_records_2014 = GetDataFromPath('../Data/table 11-(2014-15).csv', 14)
 std_records_2021 = GetDataFromPath('../Data/table 11-(2021-22).csv', 14)
 
 # slice data for better visualisation and avoiding memory error bcz data is big
-std_records_2014 = std_records_2014.iloc[0:200]
+std_records_2014 = std_records_2014.iloc[0:500]
 std_records_2021 = std_records_2021.iloc[0:500]
 
 # plot the graph by method for student enrolled by region for year 2014-15
-PlotBarGraph(std_records_2014['Region of HE provider'], std_records_2014['Number'], "Student Enrollment Record 2014-15",
-             'Number of Students Enrolled By Region in Academic Year 2014-15', 'Region', 'Number of Students')
+PlotBarGraph(std_records_2014['Region of HE provider'], std_records_2014['Number'],
+             'Number of Students Enrolled By Region in Academic Year 2014-15', 
+             "Student Enrollment Record 2014-15", 'Region', 'Number of Students')
 
 # plot the graph by method for student enrolled by Mode of study for year 2021-22
-PlotBarGraph(std_records_2021['Mode of study'], std_records_2021['Number'], "Student Enrollment Record 2021-22",
-             'Number of Students Enrolled By Study Mode in Academic Year 2021-22', 'Study Mode', 'Number of Students')
+PlotBarGraph(std_records_2021['Mode of study'], std_records_2021['Number'],
+             'Number of Students Enrolled By Study Mode in Academic Year 2021-22', 
+             "Student Enrollment Record 2021-22", 'Study Mode', 'Number of Students')
 
 # third graph pie
-
+# data source -> https://data.worldbank.org/indicator/IT.CEL.SETS.P2?locations=XO-XM-XJ&name_desc=false
 # cellular subscription data according to region for years
-cellular_subs_data = GetDataFromPath(
-    '../Data/API_IT.CEL.SETS.P2_DS2_en_csv_v2_4903391.csv', 4)
+cellular_subs_data = GetDataFromPath('../Data/API_IT.CEL.SETS.P2_DS2_en_csv_v2_4903391.csv', 4)
 
 # get first 10 countries data
 cellular_subs_data = cellular_subs_data.iloc[0:10]
