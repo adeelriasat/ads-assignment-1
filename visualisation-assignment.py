@@ -52,7 +52,7 @@ def PlotBarGraph(x, y, legend="", title="", xlabel="", ylabel=""):
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.xticks(rotation=45)
-
+    
     # show graph title with size of title
     plt.title(title, size=18)
     plt.show()
@@ -70,6 +70,7 @@ def PlotPieGraph(x, y, title=""):
     # plot the pie graph with lengends
     plt.pie(y, labels=x)
     plt.legend(loc='upper left')
+    plt.title(title, size=18)
     plt.show()
 
 
@@ -124,11 +125,11 @@ std_records_2014 = std_records_2014.iloc[0:200]
 std_records_2021 = std_records_2021.iloc[0:500]
 
 # plot the graph by method for student enrolled by region for year 2014-15
-PlotBarGraph(std_records_2014['Region of HE provider'], "Student Enrollment Record 2014-15", std_records_2014['Number'],
+PlotBarGraph(std_records_2014['Region of HE provider'], std_records_2014['Number'], "Student Enrollment Record 2014-15",
              'Number of Students Enrolled By Region in Academic Year 2014-15', 'Region', 'Number of Students')
 
 # plot the graph by method for student enrolled by Mode of study for year 2021-22
-PlotBarGraph(std_records_2021['Mode of study'], "Student Enrollment Record 2021-22", std_records_2021['Number'],
+PlotBarGraph(std_records_2021['Mode of study'], std_records_2021['Number'], "Student Enrollment Record 2021-22",
              'Number of Students Enrolled By Study Mode in Academic Year 2021-22', 'Study Mode', 'Number of Students')
 
 # third graph pie
